@@ -84,13 +84,8 @@ export function CredentialsSection() {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-foreground">{cred.role}</p>
-                        <p className="text-xs text-muted-foreground">Acceso habilitado</p>
                       </div>
                     </div>
-
-                    <Badge variant="outline" className="shrink-0">
-                      {sharedPin}
-                    </Badge>
                   </div>
 
                   <div className="mt-4 space-y-1">

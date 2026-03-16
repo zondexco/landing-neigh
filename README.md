@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Land Neigh
 
-## Getting Started
+Landing page de presentación para Neighborhood, construida con React 19, Vinext, Tailwind CSS v4 y deploy sobre Cloudflare Workers.
 
-First, run the development server:
+## Requisitos
+
+- Node.js 20+
+- pnpm 10+
+- Wrangler 4+ para deploy
+
+## Instalación
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Ejecutar en local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+La app levanta en modo desarrollo con Vinext. La landing principal vive en [land-neigh/src/app/page.tsx](src/app/page.tsx).
 
-## Learn More
+## Scripts disponibles
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm dev
+pnpm build
+pnpm start
+pnpm lint
+pnpm deploy
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `pnpm dev`: entorno local de desarrollo.
+- `pnpm build`: genera el build de cliente y worker.
+- `pnpm start`: sirve el build generado localmente.
+- `pnpm lint`: valida el código con ESLint.
+- `pnpm deploy`: publica en Cloudflare Workers usando Wrangler.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Estructura clave
 
-## Deploy on Vercel
+- [land-neigh/src/app/page.tsx](src/app/page.tsx): composición principal de la landing.
+- [land-neigh/src/components](src/components): secciones visuales como hero, credenciales, CTA y footer.
+- [land-neigh/public/assets](public/assets): recursos estáticos de marca, headers, íconos y SEO.
+- [land-neigh/worker/index.ts](worker/index.ts): entrypoint del worker para Cloudflare.
+- [land-neigh/wrangler.jsonc](wrangler.jsonc): configuración de despliegue y assets.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+El proyecto está preparado para desplegar en Cloudflare Workers con assets estáticos desde `dist/client`.
+
+```bash
+pnpm build
+pnpm deploy
+```
+
+Antes de desplegar, asegúrate de tener autenticado Wrangler en tu entorno.
+
+## Notas técnicas
+
+- La UI está pensada como landing de demo y presentación.
+- La app usa alias `@` apuntando a `src` definido en [land-neigh/vite.config.ts](vite.config.ts).
+- El worker publica los assets generados por Vinext usando la configuración de [land-neigh/wrangler.jsonc](wrangler.jsonc).

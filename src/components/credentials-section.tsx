@@ -47,7 +47,7 @@ export function CredentialsSection() {
             <div className="space-y-1">
               <CardTitle className="text-base sm:text-lg">Accesos de presentacion</CardTitle>
               <CardDescription>
-                Todos los perfiles usan el mismo PIN para evitar confusiones durante la demo.
+                Todos los perfiles usan el mismo PIN. Sientete libre de usar el que quieras para probar la app.
               </CardDescription>
             </div>
 
